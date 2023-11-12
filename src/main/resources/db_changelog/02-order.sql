@@ -2,14 +2,14 @@
 
 -- changeset liquibase aubbiali:2
 CREATE TABLE awesomepizza.orders (
-    id INT,
+    id SERIAL,
     insert_date DATE NOT NULL,
     order_date DATE NOT NULL,
     slot INT CONSTRAINT slot CHECK (slot >= 1 AND slot <= 2) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE awesomepizza.status(
-    id INT,
+    id SERIAL,
     status VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );

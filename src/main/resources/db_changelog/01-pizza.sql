@@ -2,13 +2,13 @@
 
 -- changeset liquibase aubbiali:1
 CREATE TABLE awesomepizza.pizza (
-    id INT,
+    id SERIAL,
     name VARCHAR(50) NOT NULL,
     cost INT CONSTRAINT cost CHECK (cost > 0) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE awesomepizza.ingredients (
-    id INT,
+    id SERIAL,
     name VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
