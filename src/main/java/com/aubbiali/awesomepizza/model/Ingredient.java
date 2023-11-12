@@ -8,22 +8,15 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Entity
-@Table(name = "Orders", schema = "awesomepizza")
+@Table(name = "Ingredients", schema = "awesomepizza")
 @Setter @Getter
-public class Order {
+public class Ingredient {
 
     @Id
     @GeneratedValue
     private Long id;
 
     @NotNull
-    private Date insertDate;
-
-    @NotNull
-    private Date orderDate;
-    @NotNull
-    private int slot;
+    private String name;
 }
