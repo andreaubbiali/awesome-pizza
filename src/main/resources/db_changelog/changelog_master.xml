@@ -9,4 +9,5 @@
 
 	<include file="db_changelog/01-pizza.sql"/>
 	<include file="db_changelog/02-order.sql"/>
+	<include file="db_changelog/03-renameOrderPizzaToOrderItem.sql"/>
 </databaseChangeLog>
