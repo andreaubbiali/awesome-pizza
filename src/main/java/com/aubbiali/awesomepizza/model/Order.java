@@ -2,6 +2,7 @@ package com.aubbiali.awesomepizza.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,9 @@ public class Order {
 
     @NotNull
     private int slot; // 1 is lunch, 2 is dinner
+
+    @NotNull
+    private Status currentStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItemList;
