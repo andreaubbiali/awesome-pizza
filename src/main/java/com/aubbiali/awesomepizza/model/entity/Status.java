@@ -1,5 +1,6 @@
-package com.aubbiali.awesomepizza.model;
+package com.aubbiali.awesomepizza.model.entity;
 
+import com.aubbiali.awesomepizza.model.StatusEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
@@ -15,5 +16,6 @@ public class Status {
     private Long id;
 
     @NotEmpty
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 }

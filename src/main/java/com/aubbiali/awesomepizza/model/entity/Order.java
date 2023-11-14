@@ -1,8 +1,7 @@
-package com.aubbiali.awesomepizza.model;
+package com.aubbiali.awesomepizza.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +30,7 @@ public class Order {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "current_status")
     private Status currentStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
