@@ -19,6 +19,7 @@ INSERT INTO awesomepizza.pizza_composition (id_pizza, id_ingredient) VALUES ((SE
 INSERT INTO awesomepizza.pizza_composition (id_pizza, id_ingredient) VALUES ((SELECT id FROM awesomepizza.pizza WHERE name = 'prosciutto'), (SELECT id FROM awesomepizza.ingredients WHERE name = 'pomodoro'));
 INSERT INTO awesomepizza.pizza_composition (id_pizza, id_ingredient) VALUES ((SELECT id FROM awesomepizza.pizza WHERE name = 'prosciutto'), (SELECT id FROM awesomepizza.ingredients WHERE name = 'prosciutto'));
 INSERT INTO awesomepizza.pizza_composition (id_pizza, id_ingredient) VALUES ((SELECT id FROM awesomepizza.pizza WHERE name = 'bufala'), (SELECT id FROM awesomepizza.ingredients WHERE name = 'bufala'));
+INSERT INTO awesomepizza.status (status) VALUES ('CREATED');
 INSERT INTO awesomepizza.status (status) VALUES ('IN_QUEUE');
 INSERT INTO awesomepizza.status (status) VALUES ('IN_PROGRESS');
 INSERT INTO awesomepizza.status (status) VALUES ('READY_FOR_PICKUP');
