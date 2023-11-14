@@ -1,19 +1,21 @@
 -- liquibase formatted sql
 
 -- changeset liquibase aubbiali:2
-CREATE TABLE awesomepizza.orders (
-    id SERIAL,
-    insert_date DATE NOT NULL,
-    order_date DATE NOT NULL,
-    slot INT CONSTRAINT slot CHECK (slot >= 1 AND slot <= 2) NOT NULL,
-    PRIMARY KEY (id)
-);
 CREATE TABLE awesomepizza.status(
     id SERIAL,
     status VARCHAR(25) NOT NULL,
     PRIMARY KEY (id)
 );
-CREATE TABLE awesomepizza.order_status (
+CREATE TABLE awesomepizza.orders (
+    id SERIAL,
+    insert_date DATE NOT NULL,
+    order_date DATE NOT NULL,
+    slot INT CONSTRAINT slot CHECK (slot >= 1 AND slot <= 2) NOT NULL,
+    current_status INT,
+    PRIMARY KEY (id),
+    FOREIGN KEY (current_status) REFERENCES status(id) ON DELETE no action ON UPDATE no action
+);
+CREATE TABLE awesomepizza.historic_order_status (
     id_order INT,
     id_status INT,
     change_date Date NOT NULL,
