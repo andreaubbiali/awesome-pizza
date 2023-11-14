@@ -1,14 +1,12 @@
 package com.aubbiali.awesomepizza.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Orders", schema = "awesomepizza")
@@ -16,14 +14,20 @@ import java.util.Date;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private Date insertDate;
+    @Temporal(TemporalType.DATE)
+    private Date insertDate = new Date();
 
     @NotNull
+    @Temporal(TemporalType.DATE)
     private Date orderDate;
+
     @NotNull
-    private int slot;
+    private int slot; // 1 is lunch, 2 is dinner
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItemList;
 }
