@@ -2,6 +2,7 @@ package com.aubbiali.awesomepizza.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,16 +15,17 @@ import java.util.List;
 public class Pizza {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @NotEmpty
     private String name;
 
     @NotNull
     private Float cost;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "pizza_composition",
             joinColumns = @JoinColumn(name = "id_pizza"),
