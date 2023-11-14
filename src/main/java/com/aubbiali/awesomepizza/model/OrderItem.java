@@ -1,7 +1,6 @@
 package com.aubbiali.awesomepizza.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +23,5 @@ public class OrderItem {
     @NotNull
     private int quantity;
 
-    @NotEmpty
     private String changes;
 }
