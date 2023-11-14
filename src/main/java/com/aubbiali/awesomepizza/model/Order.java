@@ -30,6 +30,7 @@ public class Order {
     private int slot; // 1 is lunch, 2 is dinner
 
     @NotNull
+    @ManyToOne
     private Status currentStatus;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
