@@ -11,7 +11,7 @@ import java.util.List;
 @Valid
 public record AddOrderRequest (
 
-        @NotNull(message = "Order date should not be null.")
+        @NotNull(message = "Order date should not be null.") // TODO add validation orderDate must be after or equal to today
         Date orderDate,
 
         @NotNull(message = "Slot should not be null.")
