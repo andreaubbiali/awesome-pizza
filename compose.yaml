@@ -1,0 +1,15 @@
+services:
+  awesomeDB:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_DB: awesomepizza
+      POSTGRES_USER: awesomepizza
+      POSTGRES_PASSWORD: awesomepizza
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  awesomeapp:
+    build: .
+    ports:
+      - "8080:8080"
