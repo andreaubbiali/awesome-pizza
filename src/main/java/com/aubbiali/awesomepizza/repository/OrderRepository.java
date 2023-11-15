@@ -1,6 +1,6 @@
 package com.aubbiali.awesomepizza.repository;
 
-import com.aubbiali.awesomepizza.model.Order;
+import com.aubbiali.awesomepizza.model.entity.Order;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
