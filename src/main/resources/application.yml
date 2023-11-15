@@ -1,9 +1,42 @@
 spring:
+  profiles:
+    active: default
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
   datasource:
     driver-class-name: org.postgresql.Driver
     username: awesomepizza
     password: awesomepizza
     url: jdbc:postgresql://localhost:5432/awesomepizza?currentSchema=awesomepizza
+  liquibase:
+    enabled: true
+    change-log: classpath:db_changelog/changelog_master.xml
+
+# Better with an external configuration
+logging:
+  level:
+    root: WARN
+    com:
+      aubbiali:
+        awesomepizza: INFO
+    org:
+      hibernate:
+        SQL: INFO
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: awesomepizza
+    password: awesomepizza
+    url: jdbc:postgresql://awesomeDB:5432/awesomepizza?currentSchema=awesomepizza
   liquibase:
     enabled: true
     change-log: classpath:db_changelog/changelog_master.xml
