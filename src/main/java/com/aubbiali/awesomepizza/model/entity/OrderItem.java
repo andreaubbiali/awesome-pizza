@@ -1,5 +1,6 @@
 package com.aubbiali.awesomepizza.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -15,9 +16,10 @@ public class OrderItem {
     @Id
     private Pizza pizza;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order")
     @Id
+    @JsonIgnoreProperties("orderItemList")
     private Order order;
 
     @NotNull
