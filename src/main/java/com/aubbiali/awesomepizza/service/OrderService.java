@@ -5,8 +5,10 @@ import com.aubbiali.awesomepizza.mappers.OrderItemMapper;
 import com.aubbiali.awesomepizza.mappers.OrderToOrderDto;
 import com.aubbiali.awesomepizza.model.StatusEnum;
 import com.aubbiali.awesomepizza.model.dto.OrderDto;
+import com.aubbiali.awesomepizza.model.entity.HistoricOrderStatus;
 import com.aubbiali.awesomepizza.model.entity.Order;
 import com.aubbiali.awesomepizza.model.entity.OrderItem;
+import com.aubbiali.awesomepizza.model.entity.Status;
 import com.aubbiali.awesomepizza.model.request.AddOrderRequest;
 import com.aubbiali.awesomepizza.repository.OrderRepository;
 import jakarta.transaction.Transactional;
@@ -58,7 +60,9 @@ public class OrderService {
 
         Order order = addOrderRequestToOrderMapper.addOrderRequestToOrder(addOrderRequest);
 
-        order.setCurrentStatus(statusService.getStatusOnOrderCreation());
+        Status createdStatus = statusService.getStatusOnOrderCreation();
+        order.setCurrentStatus(createdStatus);
+        order.getOrderHistory().add(new HistoricOrderStatus(order, createdStatus));
 
         List<OrderItem> orderItemList = addOrderRequest.orderItemList().stream().map(el ->
             orderItemMapper.requestToOrderItem(el, order)

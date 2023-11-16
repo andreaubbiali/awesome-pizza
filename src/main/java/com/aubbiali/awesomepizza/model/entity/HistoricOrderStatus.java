@@ -24,5 +24,10 @@ public class HistoricOrderStatus {
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    private Date changeDate;
+    private Date changeDate = new Date();
+
+    public HistoricOrderStatus(Order order, Status status){
+        this.order = order;
+        this.status = status;
+    }
 }
