@@ -82,4 +82,9 @@ public class OrderService {
         }
         return getOrderByID(orderId);
     }
+
+    @Transactional
+    public void setOrderOfTodayInQueue(int slot){
+        // query to set current_state=IN_QUEUE for all order of today in the specified slot
+    }
 }
