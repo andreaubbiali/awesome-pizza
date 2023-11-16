@@ -3,22 +3,18 @@ package com.aubbiali.awesomepizza.service;
 import com.aubbiali.awesomepizza.mappers.AddOrderRequestToOrderMapper;
 import com.aubbiali.awesomepizza.mappers.OrderItemMapper;
 import com.aubbiali.awesomepizza.mappers.OrderToOrderDto;
+import com.aubbiali.awesomepizza.model.StatusEnum;
 import com.aubbiali.awesomepizza.model.dto.OrderDto;
 import com.aubbiali.awesomepizza.model.entity.Order;
 import com.aubbiali.awesomepizza.model.entity.OrderItem;
-import com.aubbiali.awesomepizza.model.entity.Pizza;
 import com.aubbiali.awesomepizza.model.request.AddOrderRequest;
-import com.aubbiali.awesomepizza.model.request.AddOrderRequestItem;
 import com.aubbiali.awesomepizza.repository.OrderRepository;
 import jakarta.transaction.Transactional;
-import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +67,19 @@ public class OrderService {
         order.setOrderItemList(orderItemList);
 
         return orderRepository.save(order).getId();
+    }
+
+    /**
+     * Pick the next order to be prepared.
+     * @return the next order or null if not present.
+     */
+    public OrderDto getNextOrderForToday(){
+        Date today = new Date();
+
+        Long orderId = orderRepository.getNextOrderIdForToday(today, StatusEnum.CREATED.name()); // should be IN_QUEUE but job missing
+        if (orderId == null){
+            return null;
+        }
+        return getOrderByID(orderId);
     }
 }
