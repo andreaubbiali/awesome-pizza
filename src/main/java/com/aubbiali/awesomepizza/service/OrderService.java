@@ -88,7 +88,10 @@ public class OrderService {
     }
 
     @Transactional
-    public void setOrderOfTodayInQueue(int slot){
-        // query to set current_state=IN_QUEUE for all order of today in the specified slot
+    public void setOrderOfTodayInQueue(){
+        // get order of today in the current slot
+        // update current_status IN_QUEUE
+        // update historical status
+        // save
     }
 }

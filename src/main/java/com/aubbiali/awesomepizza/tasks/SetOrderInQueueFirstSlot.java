@@ -11,9 +11,9 @@ public class SetOrderInQueueFirstSlot {
     @Autowired
     OrderService orderService;
 
-    @Scheduled(cron = "0 0 12 * * *")
+    @Scheduled(cron = "0 * * ? * *") // every minute
     public void setOrderInQueue(){
-        orderService.setOrderOfTodayInQueue(1);
+        orderService.setOrderOfTodayInQueue();
     }
 
 }
