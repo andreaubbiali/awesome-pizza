@@ -42,3 +42,15 @@ User get the pizza informations like: name, ingredients and costs.
 
 - Allow to specify a specific hour for orders
 - Add documentation (swagger)
+- Manage status hierarchy into database so also other application connected to it can undrestand
+
+
+### things
+
+```java
+        List<OrderItem> orderItemList = addOrderRequest.orderItemList().stream().map(el ->
+            orderItemMapper.requestToOrderItem(el, order)
+        ).toList();
+        // to list immodificabile
+        // collection to list modificabile
+```

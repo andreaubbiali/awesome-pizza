@@ -34,6 +34,6 @@ public class OrderController {
 
         Long orderId = orderService.addOrder(addOrderRequest);
 
-        return new ResponseEntity<>(orderId, HttpStatus.OK);
+        return new ResponseEntity<>(orderId, HttpStatus.CREATED);
     }
 }
