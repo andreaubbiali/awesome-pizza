@@ -17,4 +17,12 @@ public class EmployeeService {
     public OrderDto getNextOrder(){
         return orderService.getNextOrderForToday();
     }
+
+    public void passOrderToNextStatus(Long orderId){
+        // get order by id
+        // if it's COMPLETED || CREATED  return
+        // get next status (will be a util method I think. Passing a status, it will return the next one)
+        // set the new status into current_status of the order and save also the historical order status
+        // return the new status
+    }
 }
